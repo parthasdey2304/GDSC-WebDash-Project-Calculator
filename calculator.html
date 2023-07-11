@@ -14,7 +14,7 @@
                 <div class="p-2">
                     <div class="w-full h-[485px] rounded-xl bg-white flex-col space-y-2 p-2">
                         <div class="w-full h-[87px] rounded-xl bg-zinc-800 flex space-x-4 justify-between p-2">
-                            <button class="w-full h-[70px] bg-green-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="">AC</button>
+                            <button class="w-full h-[70px] bg-green-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="clearResult()">AC</button>
                             <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="">( )</button>
                             <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="append('%')">%</button>
                             <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="append('/')">/</button>
@@ -57,7 +57,20 @@
                     <button class="text-2xl text-red-500 font-mono font-bold hover:text-red-600 hover:underline underline-offset-4">Delete</button>
                 </div>
 
-                <div class="border h-[530px] rounded-lg overflow-auto">
+                <div class="border h-[530px] rounded-lg flex-col space-y-2 overflow-auto p-2">
+                    <div class="w-full h-[100px] border rounded-xl bg-white flex-col space-y-2 p-1">
+                        <div class="border h-[45%] rounded-xl p-2 flex justify-between">
+                            <p class="font-bold text-right">Expression :</p>
+                            <p class="font-bold text-right">223+88/44</p>
+                        </div>
+
+                        <div class="border h-[45%] rounded-xl p-2 flex justify-between">
+                            <p class="font-bold text-right">Result :</p>
+                            <p class="font-bold text-right">7.068181818181818</p>
+                        </div>
+                    </div>
+
+                   
                     
                 </div>
             </div>
@@ -65,6 +78,7 @@
 
         <script>
             let expression = "";
+            let result = document.getElementById('result');
 
             function append(st) {
                 expression += st;
@@ -77,9 +91,9 @@
                 expression = res.toString();
             }
 
-            function clear() {
-                expression = "";
-                document.getElementById('result').value = expression;
+            function clearResult() {
+              expression = '';
+              result.value = '';
             }
 
             function deleteLastChar() {
