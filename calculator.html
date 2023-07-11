@@ -14,9 +14,9 @@
                 <!-- This section has all the buttons attached -->
                 <div class="p-2">
                     <div class="w-full h-[485px] rounded-xl bg-white flex-col space-y-2 p-2">
-                        <div class="w-full h-[87px] rounded-xl bg-zinc-800 flex space-x-4 justify-between p-2">
+                        <div class="w-full h-[87px] rounded-xl bg-zinc-800 flex space-x-3 justify-between p-2">
                             <button class="w-full h-[70px] bg-green-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="clearResult()">AC</button>
-                            <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="">( )</button>
+                            <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="append('^')">x <sup class="text-sm">y</sup></button>
                             <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="append('%')">%</button>
                             <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="append('/')">/</button>
                         </div>
@@ -55,24 +55,11 @@
             <div class="h-full w-1/3 border rounded-xl bg-white/30 flex-col space-y-10 p-4">
                 <div class="flex justify-between p-2">
                     <p class="text-3xl font-mono font-bold text-white">History</p>
-                    <button class="text-2xl text-red-500 font-mono font-bold hover:text-red-600 hover:underline underline-offset-4">Delete</button>
+                    <button class="text-2xl text-red-500 font-mono font-bold hover:text-red-600 hover:underline underline-offset-4" onclick="deleteHistory()">Delete</button>
                 </div>
 
-                <div class="border h-[530px] rounded-lg flex-col space-y-2 overflow-auto p-2">
-                    <div class="w-full h-[100px] border rounded-xl bg-white flex-col space-y-2 p-1">
-                        <div class="border h-[45%] rounded-xl p-2 flex justify-between">
-                            <p class="font-bold text-right">Expression :</p>
-                            <p class="font-bold text-right">223+88/44</p>
-                        </div>
-
-                        <div class="border h-[45%] rounded-xl p-2 flex justify-between">
-                            <p class="font-bold text-right">Result :</p>
-                            <p class="font-bold text-right">7.068181818181818</p>
-                        </div>
-                    </div>
-
-                   
-                    
+                <div class="border h-[530px] rounded-lg flex-col space-y-2 overflow-auto p-2" id="historyList">
+                    <!-- This is where all the history of the calculation get updated! -->
                 </div>
             </div>
         </div>
@@ -82,6 +69,9 @@
             // Variables required for the project
             let expression = "";
             let result = document.getElementById('result');
+            let history = "";
+            let historyList = document.getElementById('historyList');
+            let historyExpression = ""; // Initialize historyExpression variable
 
             function append(st) {
                 expression += st;
@@ -92,6 +82,8 @@
                 let res = evaluateExpression(expression);
                 document.getElementById('result').value = res;
                 expression = res.toString();
+                historyExpression = expression; // Assign original expression to historyExpression
+                historyUpdate();
             }
 
             function clearResult() {
@@ -110,10 +102,11 @@
                     '-': (a, b) => a - b,
                     '*': (a, b) => a * b,
                     '/': (a, b) => a / b,
-                    '%': (a, b) => a % b
+                    '%': (a, b) => a % b,
+                    '^': (a, b) => Math.pow(a, b)
                 };
 
-                let operands = expression.split(/([+\-*/%])/);
+                let operands = expression.split(/([+\-*/%^])/);
 
                 while (operands.length > 1) {
                     let [leftOperand, operator, rightOperand] = operands.splice(0, 3);
@@ -122,6 +115,27 @@
                 }
 
                 return parseFloat(operands[0]);
+            }
+
+            // This is to update the panel of history
+            function historyUpdate() {
+                history += '<div class="w-full h-[100px] border rounded-xl bg-white flex-col space-y-2 p-1">' +
+                    '<div class="border h-[45%] rounded-xl p-2 flex justify-between">' +
+                    '<p class="font-bold text-right">Expression :</p>' +
+                    '<p class="font-bold text-right">' + historyExpression + '</p>' +
+                    '</div>' +
+                    '<div class="border h-[45%] rounded-xl p-2 flex justify-between">' +
+                    '<p class="font-bold text-right">Result :</p>' +
+                    '<p class="font-bold text-right">' + result.value + '</p>' +
+                    '</div>' +
+                    '</div>\n\n';
+
+                historyList.innerHTML = history;
+            }
+
+            function deleteHistory() {
+                history = "";
+                historyList.innerHTML = history;
             }
         </script>
     </body>
