@@ -5,48 +5,60 @@
     </head>
 
     <body class="bg-black">
-        <div class="w-full h-[720px] bg-black flex justify-center p-8">
-            <div class="h-full w-1/3 border rounded-2xl flex-col">
-                <div class="p-2 h-[150px]">
-                    <input type="text" id="result" class="border rounded-xl w-full h-full bg-zinc-800 text-white text-right" readonly>
+        <div class="w-full h-[720px] bg-black md:flex flex-wrap space-x-32 justify-center md:p-8 p-4">
+            <div class="h-full md:w-1/3 w-full border rounded-2xl flex-col">
+                <div class="p-2 h-[150px] flex-col">
+                    <input type="text" id="result" class="border rounded-xl w-full h-full bg-zinc-800 text-white text-right text-5xl font-bold p-2" readonly>
                 </div>
+
                 <div class="p-2">
                     <div class="w-full h-[485px] rounded-xl bg-white flex-col space-y-2 p-2">
                         <div class="w-full h-[87px] rounded-xl bg-zinc-800 flex space-x-4 justify-between p-2">
                             <button class="w-full h-[70px] bg-green-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="">AC</button>
                             <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="">( )</button>
-                            <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="">%</button>
-                            <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="">/</button>
+                            <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="append('%')">%</button>
+                            <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="append('/')">/</button>
                         </div>
 
                         <div class="w-full h-[87px] rounded-xl bg-zinc-800 flex space-x-4 justify-between p-2">
-                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="">7</button>
-                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="">8</button>
-                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="">9</button>
-                            <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="">x</button>
+                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="append(7)">7</button>
+                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="append(8)">8</button>
+                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="append(9)">9</button>
+                            <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="append('*')">x</button>
                         </div>
 
                         <div class="w-full h-[87px] rounded-xl bg-zinc-800 flex space-x-4 justify-between p-2">
-                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="">4</button>
-                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="">5</button>
-                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="">6</button>
-                            <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="">-</button>
+                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="append(4)">4</button>
+                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="append(5)">5</button>
+                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="append(6)">6</button>
+                            <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="append('-')">-</button>
                         </div>
 
                         <div class="w-full h-[87px] rounded-xl bg-zinc-800 flex space-x-4 justify-between p-2">
-                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="">1</button>
-                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="">2</button>
-                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="">3</button>
-                            <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="">+</button>
+                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="append(1)">1</button>
+                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="append(2)">2</button>
+                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="append(3)">3</button>
+                            <button class="w-full h-[70px] bg-blue-600 rounded-xl hover:bg-black text-white duration-800 text-2xl font-bold" onclick="append('+')">+</button>
                         </div>
 
                         <div class="w-full h-[87px] rounded-xl bg-zinc-800 flex space-x-4 justify-between p-2">
-                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="">0</button>
-                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-3xl font-bold" onclick="">.</button>
-                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-red-600 hover:text-white duration-800 text-2xl font-bold" onclick=""><=</button>
-                            <button class="w-full h-[70px] bg-blue-500 rounded-xl hover:bg-blue-600 text-white duration-800 text-2xl font-bold" onclick="">=</button>
+                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-2xl font-bold" onclick="append(0)">0</button>
+                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-black hover:text-white duration-800 text-3xl font-bold" onclick="append('.')">.</button>
+                            <button class="w-full h-[70px] bg-white rounded-xl hover:bg-red-600 hover:text-white duration-800 text-2xl font-bold" onclick="deleteLastChar()"><=</button>
+                            <button class="w-full h-[70px] bg-black rounded-xl hover:bg-blue-600 text-white duration-800 text-3xl font-bold" onclick="calculate()">=</button>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="h-full w-1/3 border rounded-xl bg-white/30 flex-col space-y-10 p-4">
+                <div class="flex justify-between p-2">
+                    <p class="text-3xl font-mono font-bold text-white">History</p>
+                    <button class="text-2xl text-red-500 font-mono font-bold hover:text-red-600 hover:underline underline-offset-4">Delete</button>
+                </div>
+
+                <div class="border h-[530px] rounded-lg overflow-auto">
+                    
                 </div>
             </div>
         </div>
@@ -63,6 +75,16 @@
                 let res = evaluateExpression(expression);
                 document.getElementById('result').value = res;
                 expression = res.toString();
+            }
+
+            function clear() {
+                expression = "";
+                document.getElementById('result').value = expression;
+            }
+
+            function deleteLastChar() {
+              expression = expression.slice(0, -1);
+              result.value = expression;
             }
 
             function evaluateExpression(expression) {
