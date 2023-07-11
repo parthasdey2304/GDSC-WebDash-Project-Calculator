@@ -5,14 +5,16 @@
     </head>
 
     <body>
-        <div class="w-full h-[727px] flex justify-center bg-black p-6">
-            <div class="max-w-md border rounded-xl w-full h-[670px] flex-col">
-                <div class="border rounded-xl w-full h-[200px] bg-zinc-900 text-left" id="result">1111</div>
+        <div class="w-full h-[727px] flex justify-center bg-black/50 p-6">
+            <div class="w-[35%] border rounded-xl h-[670px] flex-col bg-black">
+                <div class="border rounded-xl w-full h-[200px] bg-zinc-900 text-right text-7xl p-4 pt-28 text-white font-bold" id="result">
+                    111
+                </div>
 
                 <div class="rounded-xl w-full h-[450px] flex-col">
-                    <div class="rounded-xl w-full h-[90px] flex justify-between space-x-6 px-10 py-2 mt-1">
-                        <div class="rounded-full cursor-pointer h-full w-full bg-green-600 hover:rounded-3xl transition duration-700">
-                            <p class="text-white font-bold text-3xl px-[16px] py-4">AC</p>
+                    <div class="rounded-xl w-full h-[90px] flex justify-between space-x-6 p-2 mt-1">
+                        <div class="rounded-full cursor-pointer h-full w-full bg-green-600 hover:rounded-3xl transition duration-700" onclick="clearResult()">
+                            <p class="text-white font-bold text-3xl px-[16px] py-4" >AC</p>
                         </div>
                         <div class="rounded-full cursor-pointer h-full w-full bg-blue-500 hover:rounded-3xl transition duration-700">
                             <p class="text-white font-bold text-3xl px-[21px] py-4">( )</p>
@@ -25,7 +27,7 @@
                         </div>
                     </div>
 
-                    <div class="rounded-xl w-full h-[90px] flex justify-between space-x-6 px-10 py-2">
+                    <div class="rounded-xl w-full h-[90px] flex justify-between space-x-6 p-2">
                         <div class="bg-zinc-900 rounded-full cursor-pointer h-full w-full hover:rounded-3xl transition duration-700">
                             <p class="text-white font-bold text-3xl px-[27px] py-5">7</p>
                         </div>
@@ -40,7 +42,7 @@
                         </div>
                     </div>
 
-                    <div class="rounded-xl w-full h-[90px] flex justify-between space-x-6 px-10 py-2">
+                    <div class="rounded-xl w-full h-[90px] flex justify-between space-x-6 p-2">
                         <div class="bg-zinc-900 rounded-full cursor-pointer h-full w-full hover:rounded-3xl transition duration-700">
                             <p class="text-white font-bold text-3xl px-[27px] py-5">4</p>
                         </div>
@@ -55,7 +57,7 @@
                         </div>
                     </div>
 
-                    <div class="rounded-xl w-full h-[90px] flex justify-between space-x-6 px-10 py-2">
+                    <div class="rounded-xl w-full h-[90px] flex justify-between space-x-6 p-2">
                         <div class="bg-zinc-900 rounded-full cursor-pointer h-full w-full hover:rounded-3xl transition duration-700">
                             <p class="text-white font-bold text-3xl px-[27px] py-5">1</p>
                         </div>
@@ -70,7 +72,7 @@
                         </div>
                     </div>
 
-                    <div class="rounded-xl w-full h-[90px] flex justify-between space-x-6 px-10 py-2">
+                    <div class="rounded-xl w-full h-[90px] flex justify-between space-x-6 p-2">
                         <div class="bg-zinc-900 rounded-full cursor-pointer h-full w-full hover:rounded-3xl transition duration-700">
                             <p class="text-white font-bold text-3xl px-[27px] py-5">0</p>
                         </div>
@@ -87,5 +89,41 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            let result = document.getElementById('result');
+            let expression = '';
+        
+            function appendValue(value) {
+              expression += value;
+              result.value = expression;
+            }
+        
+            function appendOperator(operator) {
+              expression += operator;
+              result.value = expression;
+            }
+        
+            function deleteLastChar() {
+              expression = expression.slice(0, -1);
+              result.value = expression;
+            }
+        
+            function clearResult() {
+              expression = '';
+              result.value = '';
+            }
+        
+            function calculateResult() {
+              try {
+                let res = eval(expression);
+                result.value = res;
+                expression = res.toString();
+              } catch (error) {
+                result.value = 'Error';
+                expression = '';
+              }
+            }
+          </script>
     </body>
 </html>
