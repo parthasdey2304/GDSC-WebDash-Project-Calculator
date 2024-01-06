@@ -81,8 +81,8 @@
             function calculate() {
                 let res = evaluateExpression(expression);
                 document.getElementById('result').value = res;
-                expression = res.toString();
                 historyExpression = expression; // Assign original expression to historyExpression
+                expression = res.toString();
                 historyUpdate();
             }
 
